@@ -1,0 +1,8 @@
+{
+    "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+    "stop_tokens": ["<|eot_id|>"],
+    "has_chat_template": true,
+    "start_message": " <|start_header_id|>system<|end_header_id|>\n\n{default_system_prompt}<|eot_id|>",
+    "history_template": "<|start_header_id|>user<|end_header_id|>\n\n{user}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{assistant}<|eot_id|>",
+    "current_message_template": "<|start_header_id|>user<|end_header_id|>\n\n{user}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{assistant}"
+}

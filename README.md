@@ -6,7 +6,8 @@ GeniSysAI LLMCore currently supports the following hardware:
 
 - [Intel® AI PC](IntelAiPC "Intel® AI PC")
 
-# Intel® AI PC
+# GeniSysAI LLMCore For Intel® AI PC
+## Project Status: In Development
 [![Intel® AI PC](assets/img/intel-core-ultra.webp)](https://www.intel.co.uk/content/www/uk/en/products/docs/processors/core-ultra/ai-pc.html)
 The first version of LLMCore is built for running on [Intel® AI PC](https://www.cognitech.systems/blog/artificial-intelligence/ai-pcs/entry/intel-ai-pc-dev-kit-web-nn-llama-3-2 "Intel® AI PC"), supporting Intel® Core™ Ultra CPUs and NPUs, and Intel® Arc™ GPUs. You can find out more about Intel® AI PCs on our article [here](https://www.cognitech.systems/blog/artificial-intelligence/ai-pcs/entry/intel-ai-pc-dev-kit-web-nn-llama-3-2 "Intel® AI PC Development Kit").
 
@@ -17,6 +18,11 @@ OpenVINO™ is an open-source toolkit by Intel, designed to optimize and deploy 
 ## Intel® OpenVINO™ GenAI
 [![Intel® OpenVINO™ GenAI](assets/img/intel-openvino-genai.webp)](https://github.com/openvinotoolkit/openvino.genai)
 OpenVINO™ GenAI is designed to simplify the process of running generative AI models, giving you access to top Generative AI models with optimized pipelines, efficient execution methods, and sample implementations. It abstracts away the complexity of the generation pipeline, letting you focus on providing the model and input context while OpenVINO handles tokenization, executes the generation loop on your device, and returns the results. 
+
+# Gettng started with LLMCore For Intel® AI PC
+The project currently allows for you to set up the basics of LLMCore for Intel AI PC. The current functionality and documentation allows for you to use LLama 3.2, modify the system prompt, and communicate with the LLM locally.
+
+To get started with LLMCore For Intel AI PC follow the [installation guide](IntelAiPC/README.md "Intel® AI PC installation guide").
 
 # Author
 [![Adam Milton-Barker](assets/img/adam-milton-barker.png)](https://www.adammiltonbarker.com)

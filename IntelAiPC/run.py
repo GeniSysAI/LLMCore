@@ -121,7 +121,7 @@ class LLMCore:
 
         self.Model.load_model_definition()
         self.Helpers.log_message(
-            self.LogFile, "Model", "Info", "Updated agent definition XML loaded for runtime"
+            self.LogFile, "Model", "INFO", "Updated agent definition XML loaded for runtime"
         )
         
         self.Model.load_config()
@@ -129,21 +129,21 @@ class LLMCore:
         
         if self.Model.llm_tokenizer is not None:
             self.Helpers.log_message(
-                self.LogFile, "Model", "Info", f"{self._confs['llm']['model']} tokenizer loaded successfully."
+                self.LogFile, "Model", "INFO", f"{self._confs['llm']['model']} tokenizer loaded successfully."
             )
         else:
             self.Helpers.log_message(
-                self.LogFile, "Model", "Error", f"Could not load {self._confs['llm']['model']} tokenizer"
+                self.LogFile, "Model", "ERROR", f"Could not load {self._confs['llm']['model']} tokenizer"
             )
 
         self.Model.load_model()
         if self.Model.llm is not None:
             self.Helpers.log_message(
-                self.LogFile, "Model", "Info", f"{self._confs['llm']['model']} loaded successfully."
+                self.LogFile, "Model", "INFO", f"{self._confs['llm']['model']} loaded successfully."
             )
         else:
             self.Helpers.log_message(
-                self.LogFile, "Model", "Error", f"Could not load {self._confs['llm']['model']}"
+                self.LogFile, "Model", "ERROR", f"Could not load {self._confs['llm']['model']}"
             )
             
     def query(self, prompt):
@@ -233,7 +233,7 @@ class LLMCore:
                 self.Model.llm.generate(**generate_kwargs)
             except Exception as e:
                 self.Helpers.log_message(
-                    self.LogFile, "Error", "ERROR", f"Generation error: {str(e)}"
+                    self.LogFile, "QUERY", "ERROR", f"Generation error: {str(e)}"
                 )
             finally:
                 stream_complete.set()
@@ -266,50 +266,66 @@ class LLMCore:
                     
         except Exception as e:
             self.Helpers.log_message(
-                self.LogFile, "Error", "ERROR", f"Streaming error: {str(e)}"
+                self.LogFile, "QUERY", "ERROR", f"Streaming error: {str(e)}"
             )
             
         # Add final response to history only if we got something
         if full_response:
-            self.History.add_message(self.conversation_id, "genisys", full_response)
+            self.History.add_message(
+                self.conversation_id, "genisys", full_response
+            )
             self.Helpers.log_message(
-                self.ChatLogFile, "GeniSysAI", "Response", full_response, True)
-
+                self.ChatLogFile, "GeniSysAI", "RESPONSE", full_response, True
+            )
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python script.py [INPUT|SERVER] [model_path]")
+        print("Usage: python run.py [INPUT|SERVER]")
         sys.exit(1)
+
+    LLMCore = LLMCore()
 
     command = sys.argv[1].upper()
     if command == "INPUT":
-        LLMCore = LLMCore()
         LLMCore.Helpers.log_message(
-            LLMCore.LogFile, "Inference", "INFO", "Running in input mode")
-        
+            LLMCore.LogFile, "Input Mode", "INFO", "Running in input mode"
+        )
+
         try:
             while True:
                 prompt = input("\nUser> ")
                 LLMCore.Helpers.log_message(
-                    LLMCore.ChatLogFile, "User", "Prompt", prompt, True)
-                
+                    LLMCore.ChatLogFile, "Input Mode", "PROMPT", prompt, True
+                )
+
                 print("\nGeniSysAI> ", end='', flush=True)
                 response_text = ""
-                
+
                 try:
                     for text_chunk in LLMCore.query(prompt):
                         if text_chunk:  # Only print non-empty chunks
                             print(text_chunk, end='', flush=True)
                             response_text += text_chunk
-                    
+
                 except Exception as e:
                     print(f"\nError generating response: {str(e)}")
                     LLMCore.Helpers.log_message(
-                        LLMCore.LogFile, "Error", "ERROR", str(e))
-                
+                        LLMCore.LogFile, "Input Mode", "ERROR", f"\nError generating response: {str(e)}")
+
         except KeyboardInterrupt:
             print("\nExiting...")
         except Exception as e:
             print(f"\nError: {str(e)}")
             LLMCore.Helpers.log_message(
-                LLMCore.LogFile, "Error", "ERROR", str(e))
+                LLMCore.LogFile, "Input Mode", "ERROR", str(e)
+            )
+
+    elif command == "SERVER":
+        LLMCore.Helpers.log_message(
+            LLMCore.LogFile, "Server Mode", "INFO", "SERVER mode not implemented"
+        )
+
+    else:
+        LLMCore.Helpers.log_message(
+            LLMCore.LogFile, "Server Mode", "ERROR", "Invalid command provided. Usage: python run.py [INPUT|SERVER]")
+        sys.exit(1)

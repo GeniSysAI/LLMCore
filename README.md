@@ -7,7 +7,8 @@ GeniSysAI LLMCore currently supports the following hardware:
 - [Intel® AI PC](IntelAiPC "Intel® AI PC")
 
 # GeniSysAI LLMCore For Intel® AI PC
-## Project Status: In Development
+**Project Status: In Development** 
+
 [![Intel® AI PC](assets/img/intel-core-ultra.webp)](https://www.intel.co.uk/content/www/uk/en/products/docs/processors/core-ultra/ai-pc.html)
 The first version of LLMCore is built for running on [Intel® AI PC](https://www.cognitech.systems/blog/artificial-intelligence/ai-pcs/entry/intel-ai-pc-dev-kit-web-nn-llama-3-2 "Intel® AI PC"), supporting Intel® Core™ Ultra CPUs and NPUs, and Intel® Arc™ GPUs. You can find out more about Intel® AI PCs on our article [here](https://www.cognitech.systems/blog/artificial-intelligence/ai-pcs/entry/intel-ai-pc-dev-kit-web-nn-llama-3-2 "Intel® AI PC Development Kit").
 

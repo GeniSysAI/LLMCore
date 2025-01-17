@@ -156,10 +156,6 @@ class LLMCore:
 
         # Get history and convert to tokens
         history = self.History.get_history(self.conversation_id)
-        input_ids = self.Model.convert_history_to_token(history)
-
-        # Create attention mask (1s for all tokens since we want to attend to everything)
-        attention_mask = torch.ones_like(input_ids)
 
         # Define maximum token limit for the input
         MAX_TOKENS = self._confs["llm"]["max_tokens"]  # Adjust based on model

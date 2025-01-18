@@ -23,7 +23,7 @@ OpenVINO™ GenAI is designed to simplify the process of running generative AI m
 
 # LLMCore For Intel® AI PC Roadmap
 
-- Local communication with LLM via commandline [x] 
+- Local communication with LLM via commandline ✅
 - LLM exposed locally via REST API 
 - Local communication with LLM via REST API
 - LLM agent functionality
